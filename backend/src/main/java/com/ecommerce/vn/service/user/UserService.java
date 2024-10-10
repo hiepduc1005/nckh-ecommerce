@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import com.ecommerce.vn.entity.user.User;
 
-
 public interface UserService {
 	
 	User findUserByUuId(UUID userId);

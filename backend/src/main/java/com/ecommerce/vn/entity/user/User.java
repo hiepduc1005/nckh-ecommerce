@@ -43,6 +43,9 @@ public class User {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
+	@Column(name = "user_name")
+	private String userName;
+
 	@Column(name = "email", nullable = false)
 	private String email;
 	
@@ -170,6 +173,14 @@ public class User {
 	public void setUpdateAt(LocalDateTime updateAt) {
 		this.updateAt = updateAt;
 	}
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 	
 	
 }

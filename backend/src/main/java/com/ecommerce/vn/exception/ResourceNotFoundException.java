@@ -17,6 +17,9 @@ public class ResourceNotFoundException extends RuntimeException{
 	private String fieldString;
 	
 	private UUID fieldId;
+	
+    private String fieldName;
+    private Object fieldValue;
 
 	public ResourceNotFoundException(String resourceName, String field, String fieldString) {
 		super(String.format("Cant not found %s with %s: %s",resourceName,field,fieldString));
@@ -24,6 +27,7 @@ public class ResourceNotFoundException extends RuntimeException{
 		this.field = field;
 		this.fieldString = fieldString;
 	}
+	
 
 	public ResourceNotFoundException(String resourceName, String field, UUID fieldId) {
 		super(String.format("Cant not found %s with %s: %s",resourceName,field,fieldId.toString()));
@@ -67,6 +71,22 @@ public class ResourceNotFoundException extends RuntimeException{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+    public String getFieldName() {
+        return fieldName;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
+    }
+
+    public Object getFieldValue() {
+        return fieldValue;
+    }
+
+    public void setFieldValue(Object fieldValue) {
+        this.fieldValue = fieldValue;
+    }
 	
 	
 	

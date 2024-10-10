@@ -1,5 +1,6 @@
 package com.ecommerce.vn.entity.order;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -59,7 +60,24 @@ public class Order {
 	@Column(name = "order_delivered_user_date")
 	private LocalDateTime orderDeliveredUserDate;
 	
+	//ADD more
+	@Column(name = "payment_method", nullable = false)
+    private String paymentMethod;
+
+	@Column(name = "shipping_method", nullable = false)
+    private String shippingMethod;  // Ví dụ: "Standard", "Express"
+
+    @Column(name = "shipping_fee", nullable = false)
+    private BigDecimal shippingFee;
+
+	@Column(name = "notes", columnDefinition = "TEXT")
+    private String notes;
 	
+	@Column(name = "discount")
+    private BigDecimal discount;
+
+	@Column(name = "total_amount", nullable = false)
+    private BigDecimal totalAmount;
 
 	public User getUser() {
 		return user;
@@ -84,8 +102,6 @@ public class Order {
 	public void setId(UUID id) {
 		this.id = id;
 	}
-
-	
 
 	public Coupon getCoupon() {
 		return coupon;
@@ -134,6 +150,54 @@ public class Order {
 	public void setOrderDeliveredCarrierDate(LocalDateTime orderDeliveredCarrierDate) {
 		this.orderDeliveredCarrierDate = orderDeliveredCarrierDate;
 	}
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getShippingMethod() {
+        return shippingMethod;
+    }
+
+    public void setShippingMethod(String shippingMethod) {
+        this.shippingMethod = shippingMethod;
+    }
+
+    public BigDecimal getShippingFee() {
+        return shippingFee;
+    }
+
+    public void setShippingFee(BigDecimal shippingFee) {
+        this.shippingFee = shippingFee;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+	public BigDecimal getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(BigDecimal discount) {
+		this.discount = discount;
+	}
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
 	
 	

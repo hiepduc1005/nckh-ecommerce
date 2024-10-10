@@ -87,5 +87,8 @@ public class OrderItem {
 		this.price = price;
 	}
 	
+	public BigDecimal getTotalPrice() {
+        return price.multiply(BigDecimal.valueOf(quantity)); // Tính tổng = giá * số lượng
+    }
 	
 }

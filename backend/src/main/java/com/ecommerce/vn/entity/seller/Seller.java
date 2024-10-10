@@ -41,6 +41,7 @@ public class Seller {
 	@Column(name = "updated_at")
 	private LocalDateTime updateAt;
 
+	
 	public UUID getId() {
 		return id;
 	}
@@ -80,7 +81,5 @@ public class Seller {
 	public void setUpdateAt(LocalDateTime updateAt) {
 		this.updateAt = updateAt;
 	}
-	
-	
 
 }

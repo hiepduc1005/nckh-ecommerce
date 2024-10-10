@@ -7,12 +7,14 @@ import java.util.UUID;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.ecommerce.vn.entity.product.Product;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,9 +22,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
 @Entity
 @Table(name = "attributes")
+@EntityListeners(AuditingEntityListener.class)
 public class Attribute {
 	
 	@Id
@@ -39,7 +41,7 @@ public class Attribute {
 	
 	@LastModifiedDate
 	@Column(name = "updated_at")
-	private LocalDateTime updateAt;
+	private LocalDateTime updatedAt;  
 	
 	@Column(name = "created_by")
 	private UUID createdBy;
@@ -47,12 +49,11 @@ public class Attribute {
 	@Column(name = "updated_by")
 	private UUID updatedBy;
 	
-	@ManyToMany(fetch = FetchType.LAZY,mappedBy = "attributes")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "attributes")
 	private Set<Product> products = new HashSet<Product>();
 	
 	@OneToMany(mappedBy = "attribute", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<AttributeValue> attributeValues = new HashSet<>();
-	
 	
 
 	public Boolean getActive() {
@@ -103,13 +104,6 @@ public class Attribute {
 		this.createdAt = createdAt;
 	}
 
-	public LocalDateTime getUpdateAt() {
-		return updateAt;
-	}
-
-	public void setUpdateAt(LocalDateTime updateAt) {
-		this.updateAt = updateAt;
-	}
 
 	public UUID getCreatedBy() {
 		return createdBy;
@@ -125,6 +119,14 @@ public class Attribute {
 
 	public void setUpdatedBy(UUID updatedBy) {
 		this.updatedBy = updatedBy;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	
 	

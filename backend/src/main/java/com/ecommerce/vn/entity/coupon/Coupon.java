@@ -1,5 +1,6 @@
 package com.ecommerce.vn.entity.coupon;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -7,14 +8,18 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import com.ecommerce.vn.entity.product.DiscountType;
+import com.ecommerce.vn.entity.seller.Seller;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,10 +34,10 @@ public class Coupon {
 	private String code;
 	
 	@Column(name = "coupon_description", nullable = false)
-	private String coupondDescription;
+	private String couponDescription;
 	
 	@Column(name = "discount_value", nullable = false)
-	private Integer discountValue;
+	private BigDecimal discountValue;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "discount_type",nullable = false)
@@ -70,6 +75,10 @@ public class Coupon {
 	
 	@Column(name = "updated_by")
 	private UUID updatedBy;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "seller_id", nullable = false) // Thêm trường seller
+    private Seller seller;
 
 	public UUID getId() {
 		return id;
@@ -88,18 +97,18 @@ public class Coupon {
 	}
 
 	public String getCoupondDescription() {
-		return coupondDescription;
+		return couponDescription;
 	}
 
 	public void setCoupondDescription(String coupondDescription) {
-		this.coupondDescription = coupondDescription;
+		this.couponDescription = coupondDescription;
 	}
 
-	public Integer getDiscountValue() {
+	public BigDecimal getDiscountValue() {
 		return discountValue;
 	}
 
-	public void setDiscountValue(Integer discountValue) {
+	public void setDiscountValue(BigDecimal discountValue) {
 		this.discountValue = discountValue;
 	}
 
@@ -190,7 +199,20 @@ public class Coupon {
 	public void setUpdatedBy(UUID updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-	
-	
- 
+
+    public String getCouponDescription() {
+        return couponDescription;
+    }
+
+    public void setCouponDescription(String couponDescription) {
+        this.couponDescription = couponDescription;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
 }

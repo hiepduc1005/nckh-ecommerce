@@ -1,9 +1,10 @@
-package com.ecommerce.vn.entity.ratting;
+package com.ecommerce.vn.entity.rating;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import com.ecommerce.vn.entity.customer.Customer;
 import com.ecommerce.vn.entity.product.Product;
@@ -20,8 +21,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "rattings")
-public class Ratting {
+@Table(name = "ratings")
+public class Rating {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
@@ -39,16 +40,23 @@ public class Ratting {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	@Column(name = "ratting_value",nullable = false)
-	private Integer rattingValue;
+	@Column(name = "rating_value",nullable = false)
+	private Integer ratingValue;
 	
-	@Column(nullable = false)
-	private String comment;
+	@Column(name = "comment", columnDefinition = "TEXT") 
+    private String comment;
 		
+	@Column(name = "is_verified", nullable = false)
+    private Boolean isVerified;
+	
 	@CreatedDate
 	@Column(name = "created_at", nullable = false, updatable = false)
 	private LocalDateTime createdAt;
 
+	@LastModifiedDate
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+	
 	public UUID getId() {
 		return id;
 	}
@@ -82,11 +90,11 @@ public class Ratting {
 	}
 
 	public Integer getRattingValue() {
-		return rattingValue;
+		return ratingValue;
 	}
 
 	public void setRattingValue(Integer rattingValue) {
-		this.rattingValue = rattingValue;
+		this.ratingValue = rattingValue;
 	}
 
 	public String getComment() {
@@ -104,6 +112,30 @@ public class Ratting {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
+
+    public Integer getRatingValue() {
+        return ratingValue;
+    }
+
+    public void setRatingValue(Integer ratingValue) {
+        this.ratingValue = ratingValue;
+    }
+
+    public Boolean getIsVerified() {
+        return isVerified;
+    }
+
+    public void setIsVerified(Boolean isVerified) {
+        this.isVerified = isVerified;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 	
 	
 
